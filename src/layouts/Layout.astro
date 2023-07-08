@@ -1,36 +1,63 @@
 ---
 export interface Props {
-	title: string;
+	title: string
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
+import Footer from '../components/Footer.astro'
+import DefaultNavbar from '../components/Navbar/Default'
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta charset='UTF-8' />
+		<meta
+			name='description'
+			content='Discover the best AI tools for your projects. CognitoAI offers a compilation of cutting-edge artificial intelligence tools to enhance your productivity and efficiency. Explore voice generation, text automation, machine learning, and computer vision tools. Stay up-to-date with the latest advancements in AI technology. Start optimizing your workflow with CognitoAI today!'
+		/>
+		<meta name='viewport' content='width=device-width' />
+		<link rel='icon' type='image/svg+xml' href='/logos/default.svg' />
+		<meta name='generator' content={Astro.generator} />
+		<meta name='title' content={title} />
+		<meta property='og:title' content={title} />
+		<meta property='og:type' content='website' />
+		<meta property='og:url' content={import.meta.env.PUBLIC_BASE_URL} />
+		<meta
+			property='og:description'
+			content='Discover the best AI tools for your projects. CognitoAI offers a compilation of cutting-edge artificial intelligence tools to enhance your productivity and efficiency. Explore voice generation, text automation, machine learning, and computer vision tools. Stay up-to-date with the latest advancements in AI technology. Start optimizing your workflow with CognitoAI today!'
+		/>
+		<meta property='og:image' content='/path/to/og-image.jpg' />
+		<meta name='twitter:card' content='summary_large_image' />
+		<meta name='twitter:title' content={title} />
+		<meta
+			name='twitter:description'
+			content='Discover the best AI tools for your projects. CognitoAI offers a compilation of cutting-edge artificial intelligence tools to enhance your productivity and efficiency. Explore voice generation, text automation, machine learning, and computer vision tools. Stay up-to-date with the latest advancements in AI technology. Start optimizing your workflow with CognitoAI today!'
+		/>
+		<meta name='twitter:image' content='/path/to/twitter-image.jpg' />
 		<title>{title}</title>
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme')
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark'
+				}
+				return 'light'
+			})()
+
+			if (theme === 'light') {
+				document.documentElement.classList.remove('dark')
+			} else {
+				document.documentElement.classList.add('dark')
+			}
+			window.localStorage.setItem('theme', theme)
+		</script>
 	</head>
-	<body>
+	<body class='dark:bg-gray-800 bg-gray-50'>
+		<DefaultNavbar client:load />
 		<slot />
+		<Footer />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>

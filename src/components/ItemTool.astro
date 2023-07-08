@@ -1,0 +1,98 @@
+---
+export interface Props {
+    title: string
+    description: string
+    url: string
+    rating: number
+    reviews: number
+    price?: string
+    featured: boolean
+    image: string
+    category: string
+    addedDate: Date
+}
+
+const { title, description, url, rating, image, reviews, price, featured, category, addedDate } =
+    Astro.props
+---
+
+<li>
+    <div class='w-full py-4 gap-2 flex sm:flex-row-reverse flex-col items-center'>
+        <a
+            href={`${url}`}
+            class='flex-grow flex flex-col relative sm:p-2 gap-2 cursor-pointer h-48 w-full sm:w-[35rem]'
+        >
+            {
+                featured && (
+                    <div class='bg-yellow-200 flex flex-row items-center justify-between gap-1.5 z-10 m-2 ml-auto w-fit text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300'>
+                        <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            class='h-5 w-5'
+                            width='24'
+                            height='24'
+                            viewBox='0 0 24 24'
+                            stroke-width='2'
+                            stroke='currentColor'
+                            fill='none'
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                        >
+                            <path stroke='none' d='M0 0h24v24H0z' fill='none' />
+                            <path d='M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4z' />
+                        </svg>
+                        <span>Featured</span>
+                    </div>
+                )
+            }
+            <img
+                src={image ?? 'https://flowbite.com/docs/images/blog/image-1.jpg'}
+                alt={`${title}`}
+                class='rounded sm:max-h-[250px] absolute sm:max-w-[650px] w-full h-full object-cover hover:scale-105 transition-all duration-300'
+            />
+        </a>
+        <div class='flex flex-col gap-4'>
+            {
+                price && price !== 'Free' && (
+                    <span class='bg-blue-100 my-2 w-fit text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300'>
+                        Premium
+                    </span>
+                )
+            }
+            {
+                price && price === 'Free' && (
+                    <span class='bg-green-100 my-2 w-fit text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300'>
+                        Free
+                    </span>
+                )
+            }
+            <a href={`${url}`}>
+                <h5 class='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200'>
+                    {title}
+                </h5>
+            </a>
+            <p class='mb-3 font-normal text-gray-700 dark:text-gray-300'>
+                {description}
+            </p>
+            <a
+                href={`${url}`}
+                class='inline-flex w-fit items-center px-3 py-2 text-sm font-medium text-center text-white bg-zinc-700 rounded-lg hover:bg-zinc-600 focus:ring-4 focus:outline-none focus:ring-zinc-300'
+            >
+                Check out this tool
+                <svg
+                    class='w-3.5 h-3.5 ml-2'
+                    aria-hidden='true'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 14 10'
+                >
+                    <path
+                        stroke='currentColor'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                        stroke-width='2'
+                        d='M1 5h12m0 0L9 1m4 4L9 9'></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</li>

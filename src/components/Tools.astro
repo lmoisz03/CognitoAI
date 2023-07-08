@@ -1,0 +1,61 @@
+---
+import ItemTool from './ItemTool.astro'
+const aiTools = [
+    {
+        title: 'LovoAI',
+        description:
+            'LOVO is the go-to AI Voice Generator & Text to Speech platform for thousands of creators, saving 90% of their time and budget.',
+        url: 'https://lovo.ai',
+        rating: 4.7,
+        reviews: 1089,
+        price: '$19/month',
+        featured: true,
+        image: 'https://lovo.ai/_next/image?url=%2Fimage%2Fmain-features-image.jpg&w=1920&q=100',
+        category: 'Voice Generation',
+        addedDate: new Date(2023, 7, 5)
+    },
+    {
+        title: 'Text Blaze',
+        description:
+            'Eliminate repetitive typing and mistakes. Easy-to-use templates with endless customizability and powerful automation.',
+        url: 'https://blaze.today/',
+        rating: 4.5,
+        reviews: 789,
+        price: 'Free',
+        featured: false,
+        image: 'https://blaze.today/images/anim_form.webp',
+        category: 'Text Automation',
+        addedDate: new Date(2023, 7, 5)
+    },
+    {
+        title: 'MindSync',
+        description:
+            'Mindsync is a platform that provides unified access to connect the required capabilities for the AI industry. It brings together businesses, the best talents, services, and solutions in the AI field in one single ecosystem to provide access to scalable task-solving resources and democratize machine learning capacities.',
+        url: 'https://mindsync.ai/',
+        rating: 4.8,
+        reviews: 1297,
+        price: 'Premium',
+        featured: true,
+        image: 'https://mindsync.ai/img/og/og.png',
+        category: 'Machine Learning',
+        addedDate: new Date(2023, 7, 5)
+    },
+    {
+        title: 'PhotoAI',
+        description:
+            'Save money and use AI to do a photo shoot from your laptop or phone instead of hiring an expensive photographer. Create AI models (of yourself!) and do photo shoots in different poses, places and styles. Try on clothes you upload on your own AI model. Turn around time of just 14 seconds.',
+        url: 'https://photoai.com/',
+        rating: 4.6,
+        reviews: 952,
+        price: '$29/month',
+        featured: true,
+        image: 'https://photoai.com/cdn-cgi/image/format=jpeg,fit=cover,width=1024,height=512,quality=85/https://photoai.com/assets/photo-ai-social-media-pic-2023-06-05.png?2',
+        category: 'Computer Vision',
+        addedDate: new Date(2023, 7, 5)
+    }
+]
+---
+
+<ul class='mt-4 flex flex-col gap-4 divide-y divide-gray-200 dark:dark:divide-gray-700'>
+    {aiTools.map((tool, index) => <ItemTool {...tool} />)}
+</ul>
